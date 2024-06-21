@@ -31,12 +31,14 @@ void insert(struct node* head, int num, int n_th,int size){
 }
 
 void insert_head(struct node** head, int num){
+    //create new node
     struct node* new_node = (struct node*)malloc(sizeof(struct node));
     new_node->num = num;
 
     if(*head != NULL){
 	new_node->next = *head;
     }
+    //head is new node
     *head = new_node;
 }
 
