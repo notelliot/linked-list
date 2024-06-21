@@ -1,3 +1,5 @@
+//singly linked list
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,27 +15,19 @@ void print(struct node* head){
     }
 }
 
+
 void insert(struct node* head, int num, int n_th,int size){
+    //create new node
     struct node* new_node = (struct node*)malloc(sizeof(struct node));
     new_node->num = num;
     for(int i = 0; i < n_th; i++){
+	//go through head til find nth node
 	head = head->next;
     }
+    //next of new node is previous next node of head
     new_node->next = head->next;
+    //next node of head is new node
     head->next = new_node;
-}
-
-void delete(struct node* head, int n_th){
-    struct node* temp = (struct node*)malloc(sizeof(struct node));
-    for(int i = 0; i < n_th - 1; i++){
-	if(i == n_th - 2){
-	    temp = head;
-	}
-	head = head->next;
-    }
-    //printf("%d\n", head->num);
-    //printf("%d\n", temp->num);
-
 }
 
 void insert_head(struct node** head, int num){
@@ -61,7 +55,6 @@ int main(){
     }
     insert(head, 8, 2, size);
     print(head);
-    //delete(head, 3);
     
     return 0;
 }
