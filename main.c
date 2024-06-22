@@ -20,7 +20,7 @@ void insert(struct node* head, int num, int n_th,int size){
     //create new node
     struct node* new_node = (struct node*)malloc(sizeof(struct node));
     new_node->num = num;
-    for(int i = 0; i < n_th; i++){
+    for(int i = 0; i < n_th - 1; i++){
 	//go through head til find nth node
 	head = head->next;
     }
@@ -42,6 +42,17 @@ void insert_head(struct node** head, int num){
     *head = new_node;
 }
 
+
+void delete(struct node* head, int n_th){
+    struct node* temp1 = head;
+    for(int i = 0; i < n_th - 2; i++){
+	temp1 = temp1->next;
+    }
+    struct node* temp2 = temp1->next;
+    temp1->next = temp2->next;
+    free(temp2);   
+}
+
 int main(){
     struct node* head = NULL;
 
@@ -57,6 +68,8 @@ int main(){
     }
     insert(head, 8, 2, size);
     print(head);
-    
+    printf("\n\n");
+    delete(head, 3);
+    print(head);
     return 0;
 }
